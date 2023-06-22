@@ -7,7 +7,7 @@ return [
     |--------------------------------------------------------------------------
     | Whether or not to automatically register the My Profile page. Set this to false to extend and create your own page.
     */
-    "enable_profile_page" => true,
+    "enable_profile_page" => false,
     /*
     | Whether or not to automatically link the My Profile page in the user menu of Filament. NOTE: if enable_profile_page => false then this value is ignored and you'll need to register the item in your service provider manually.
     */
@@ -15,11 +15,11 @@ return [
     /*
     | Whether or not to automatically display the My Profile page in the navigation of Filament. NOTE: if enable_profile_page => false then this value is ignored.
     */
-    "show_profile_page_in_navbar" => false,
+    "show_profile_page_in_navbar" => true,
     /*
     | Customize the icon profile page icon in the navbar. Does not apply to the user menu.
     */
-    "profile_page_icon" => 'heroicon-o-document-text',
+    "profile_page_icon" => 'heroicon-o-user',
     /*
     | Set an array that's compatible with the Filament Forms rules() method. Rules for required and confirmed are already set. These rules will apply to the My Profile, registration, and password reset forms. To use an instance of the \Illuminate\Validation\Rules\Password::class, see documentation.
     */
@@ -69,7 +69,7 @@ return [
     |--------------------------------------------------------------------------
     | The max-w-xx of the auth card used on all pages.
     */
-    "auth_card_max_w" => "md",
+    "auth_card_max_w" => "2xl",
     /*
     |--------------------------------------------------------------------------
     | Enable or disable registration.

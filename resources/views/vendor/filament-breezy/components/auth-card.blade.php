@@ -4,7 +4,7 @@
     ])>
 
     <div
-        class="px-6 -mt-16 md:mt-0 md:px-2 {{ Route::currentRouteName() === 'register' ? 'max-w-2xl' : 'max-w-md' }} space-y-8 w-screen">
+        class="px-6 -mt-16 md:mt-0 md:px-2 max-w-{{ request()->routeIs('filament.auth.login') ? 'md' : config('filament-breezy.auth_card_max_w') }} space-y-8 w-screen">
         <form wire:submit.prevent="{{ $action }}"
             @class([ 'p-8 space-y-8 bg-white/50 backdrop-blur-xl border border-gray-200 shadow-2xl rounded-2xl relative filament-breezy-auth-card'
             , 'dark:bg-gray-900/50 dark:border-gray-700'=> config('filament.dark_mode'),

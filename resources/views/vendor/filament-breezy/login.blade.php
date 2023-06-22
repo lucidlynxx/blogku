@@ -1,8 +1,8 @@
 <x-filament-breezy::auth-card action="authenticate">
 
-    <div class="w-full flex justify-center">
+    {{-- <div class="w-full flex justify-center">
         <x-filament::brand />
-    </div>
+    </div> --}}
 
     <div>
         <h2 class="font-bold tracking-tight text-center text-2xl">
