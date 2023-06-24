@@ -13,7 +13,7 @@ class AppLayout extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(public ?string $metaTitle = null, public ?string $metaDescription = null)
     {
         //
     }
@@ -28,7 +28,7 @@ class AppLayout extends Component
             ->select('categories.name', 'categories.slug', DB::raw('count(*) as total'))
             ->groupBy('categories.name', 'categories.slug')
             ->orderByDesc('total')
-            ->limit(5)
+            ->limit(7)
             ->get();
 
         return view('layouts.app', compact('categories'));

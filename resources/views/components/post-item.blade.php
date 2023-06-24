@@ -1,16 +1,18 @@
-<article class="flex flex-col shadow my-4">
+<article class="bg-white flex flex-col shadow my-4">
     <!-- Article Image -->
-    @if ($post->getImage() != '/storage/')
+    @if ($post->getImage() !== '/storage/')
     <a href="{{ route('view', $post) }}" class="hover:opacity-75">
-        <img src="{{ $post->getImage() }}">
+        <img src="{{ $post->getImage() }}" alt="{{ $post->title }}" class="aspect-[4/3] object-contain">
     </a>
     @endif
     <div class="bg-white flex flex-col justify-start p-6">
-        @foreach ($post->categories as $category)
-        <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">
-            {{ $category->name }}
-        </a>
-        @endforeach
+        <div class="flex gap-4">
+            @foreach ($post->categories as $category)
+            <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">
+                {{ $category->name }}
+            </a>
+            @endforeach
+        </div>
         <a href="{{ route('view', $post) }}" class="text-3xl font-bold hover:text-gray-700 pb-4">
             {{ $post->title }}
         </a>

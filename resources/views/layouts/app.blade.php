@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogku</title>
-    <meta name="author" content="">
-    <meta name="description" content="">
+    <title>{{ $metaTitle ?: 'Blogku' }}</title>
+    <meta name="author" content="Blogku">
+    <meta name="description" content="{{ $metaDescription }}">
 
     <!-- Tailwind -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
@@ -23,6 +23,7 @@
             color: white;
             border-radius: 0.5rem;
             margin-bottom: 1rem;
+            white-space: pre-wrap;
         }
     </style>
 
@@ -33,7 +34,7 @@
         integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </head>
 
-<body class="bg-white font-family-karla">
+<body class="bg-gray-50 font-family-karla">
 
     <!-- Top Bar Nav -->
     <nav class="w-full py-4 bg-blue-800 shadow">
@@ -42,7 +43,8 @@
             <nav>
                 <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
                     <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ route('home') }}">Home</a></li>
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="#">About us</a></li>
+                    <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ route('about-us') }}">About us</a>
+                    </li>
                 </ul>
             </nav>
 
@@ -67,7 +69,7 @@
     <!-- Text Header -->
     <header class="w-full container mx-auto">
         <div class="flex flex-col items-center py-12">
-            <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="#">
+            <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="{{ route('home') }}">
                 BlogKu
             </a>
             <p class="text-lg text-gray-600">
@@ -79,8 +81,7 @@
     <!-- Topic Nav -->
     <nav class="w-full py-4 border-t border-b bg-gray-100" x-data="{ open: false }">
         <div class="block sm:hidden">
-            <a href="#"
-                class="block md:hidden text-base font-bold uppercase text-center flex justify-center items-center"
+            <a href="#" class="md:hidden text-base font-bold uppercase text-center flex justify-center items-center"
                 @click="open = !open">
                 Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
             </a>

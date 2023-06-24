@@ -1,4 +1,5 @@
-<x-app-layout meta-title="Blogku" meta-description="Blogku personal blog">
+<x-app-layout :meta-title="'Blogku - Posts by category ' . $category->name"
+    :meta-description="'By category description'">
     <!-- Posts Section -->
     <section class="w-full md:w-2/3 flex flex-col items-center px-3">
 
