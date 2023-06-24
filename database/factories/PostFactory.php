@@ -24,7 +24,8 @@ class PostFactory extends Factory
             'image' => fake()->imageUrl,
             'content' => fake()->realText(5000),
             'status' => collect(fake()->randomElements(['published', 'draft', 'reviewing'], 1))->implode(''),
-            'user_id' => fake()->numberBetween(2, 4),
+            // 'user_id' => fake()->numberBetween(2, 4),
+            'user_id' => 1,
         ];
     }
 }

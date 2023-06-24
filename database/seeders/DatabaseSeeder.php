@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(3)->create();
         $this->call(CategorySeeder::class);
         $this->call(PostSeeder::class);
+        $this->call(TextWidgetSeeder::class);
     }
 }
