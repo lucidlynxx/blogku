@@ -17,6 +17,11 @@ class TextWidget extends Model
         'active'
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'key';
+    }
+
     public static function getTitle(string $key): string
     {
         $widget = \Illuminate\Support\Facades\Cache::get('text-widget-' . $key, function () use ($key) {

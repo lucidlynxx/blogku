@@ -138,7 +138,10 @@ class PostResource extends Resource
                         'draft' => 'Draft',
                         'reviewing' => 'Reviewing',
                         'published' => 'Published',
-                    ])
+                    ]),
+                SelectFilter::make('categories')
+                    ->multiple()
+                    ->relationship('categories', 'name')
             ])
             ->actions([
                 // Tables\Actions\ViewAction::make(),

@@ -8,36 +8,23 @@
     <meta name="author" content="Blogku">
     <meta name="description" content="{{ $metaDescription }}">
 
-    <!-- Tailwind -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
-
-        .font-family-karla {
-            font-family: karla;
-        }
-
-        pre {
-            padding: 1rem;
-            background-color: #1a202c;
-            color: white;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            white-space: pre-wrap;
-        }
     </style>
 
-    <!-- AlpineJS -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <!-- Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
         integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+
+    @livewireStyles
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-gray-50 font-family-karla">
 
     <!-- Top Bar Nav -->
-    <nav class="w-full py-4 bg-blue-800 shadow">
+    <nav class="w-full py-5 bg-blue-800 shadow">
         <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
 
             <nav>
@@ -48,19 +35,65 @@
                 </ul>
             </nav>
 
-            <div class="flex items-center text-lg no-underline text-white pr-6">
-                <a class="" href="#">
-                    <i class="fab fa-facebook"></i>
+            <div class="flex items-center text-sm no-underline text-white">
+                @auth
+                <div x-data="{
+                    open: false,
+                    toggle() {
+                        if (this.open) {
+                            return this.close()
+                        }
+        
+                        this.$refs.button.focus()
+        
+                        this.open = true
+                    },
+                    close(focusAfter) {
+                        if (! this.open) return
+        
+                        this.open = false
+        
+                        focusAfter && focusAfter.focus()
+                    }
+                }" x-on:keydown.escape.prevent.stop="close($refs.button)"
+                    x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button']"
+                    class="relative">
+                    <!-- button -->
+                    <button x-ref="button" x-on:click="toggle()" :aria-expanded="open"
+                        :aria-controls="$id('dropdown-button')" type="button"
+                        class="hover:text-gray-200 hover:underline px-4 uppercase font-bold inline-flex">
+                        {{ Auth::user()->name }}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5 ml-2 transition-all"
+                            x-bind:class="{'rotate-90': open}">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+
+                    <!-- Panel -->
+                    <div x-ref="panel" x-show="open" x-transition.origin.top.left
+                        x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')" style="display: none;"
+                        class="absolute right-3 mt-2 w-40 rounded-md bg-white shadow-md">
+                        <a href="{{ route('filament.pages.my-profile') }}" target="_blank"
+                            class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+                            <span class="text-black font-bold uppercase">Profile</span>
+                        </a>
+                        <a href="{{ route('filament.auth.logout') }}" target="_blank"
+                            class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+                            <span class="text-black font-bold uppercase">Log out</span>
+                        </a>
+                    </div>
+                </div>
+                @else
+                <a class="hover:text-gray-200 hover:underline px-4 uppercase font-bold"
+                    href="{{ route('filament.auth.login') }}" target="_blank">
+                    Login
                 </a>
-                <a class="pl-6" href="#">
-                    <i class="fab fa-instagram"></i>
+                <a class="hover:text-gray-200 hover:underline px-4 uppercase font-bold pl-6"
+                    href="{{ route('register') }}" target="_blank">
+                    Register
                 </a>
-                <a class="pl-6" href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a class="pl-6" href="#">
-                    <i class="fab fa-linkedin"></i>
-                </a>
+                @endauth
             </div>
         </div>
 
@@ -110,6 +143,7 @@
         </div>
     </footer>
 
+    @livewireScripts
 </body>
 
 </html>
