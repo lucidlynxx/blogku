@@ -78,10 +78,13 @@
                             class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
                             <span class="text-black font-bold uppercase">Profile</span>
                         </a>
-                        <a href="{{ route('filament.auth.logout') }}" target="_blank"
-                            class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
-                            <span class="text-black font-bold uppercase">Log out</span>
-                        </a>
+                        <form method="POST" action="{{ route('filament.auth.logout') }}">
+                            @csrf
+                            <button type="submit"
+                                class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
+                                <span class="text-black font-bold uppercase">Log out</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 @else

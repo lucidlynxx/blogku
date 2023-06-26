@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PostResource\RelationManagers;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Support\Facades\Gate;
 
 class PostResource extends Resource
 {
@@ -101,10 +102,10 @@ class PostResource extends Resource
                 ImageColumn::make('image')
                     ->square()
                     ->toggleable(isToggledHiddenByDefault: true),
-                // Tables\Columns\TextColumn::make('user.username')
-                //     ->sortable()
-                //     ->searchable()
-                //     ->visible(Gate::allows('admin')),
+                Tables\Columns\TextColumn::make('user.username')
+                    ->sortable()
+                    ->searchable()
+                    ->visible(Gate::allows('admin')),
                 Tables\Columns\TextColumn::make('title')
                     ->sortable()
                     ->searchable(['title', 'content']),
@@ -144,7 +145,6 @@ class PostResource extends Resource
                     ->relationship('categories', 'name')
             ])
             ->actions([
-                // Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
             ])
@@ -165,13 +165,23 @@ class PostResource extends Resource
         return [
             'index' => Pages\ListPosts::route('/'),
             'create' => Pages\CreatePost::route('/create'),
-            'view' => Pages\ViewPost::route('/{record}'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        if (Gate::allows('admin')) {
+            return parent::getEloquentQuery();
+        }
+        return parent::getEloquentQuery()->where('user_id', auth()->user()->id);
+    }
+
     protected static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        if (Gate::allows('admin')) {
+            return static::getModel()::count();
+        }
+        return static::getModel()::where('user_id', auth()->user()->id)->count();
     }
 }

@@ -28,6 +28,8 @@
                     <div>
                         {!! $post->content !!}
                     </div>
+
+                    <livewire:upvote-downvote :post="$post" />
                 </div>
             </article>
 
@@ -58,6 +60,7 @@
             </div>
 
         </section>
+
         <x-sidebar />
     </div>
 
