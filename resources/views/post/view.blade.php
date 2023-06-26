@@ -7,7 +7,7 @@
                 <!-- Article Image -->
                 @if ($post->getImage() !== '/storage/')
                 <a href="#" class="hover:opacity-75">
-                    <img src="{{ $post->getImage() }}">
+                    <img src="{{ $post->getImage() }}" class="aspect-auto object-contain">
                 </a>
                 @endif
                 <div class="bg-white flex flex-col justify-start p-6">

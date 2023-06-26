@@ -25,7 +25,7 @@
 
     <!-- Top Bar Nav -->
     <nav class="w-full py-5 bg-blue-800 shadow">
-        <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
+        <div class="w-full container mx-auto flex flex-wrap items-center justify-between lg:px-28">
 
             <nav>
                 <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">

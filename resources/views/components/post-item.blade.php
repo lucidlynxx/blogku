@@ -2,7 +2,7 @@
     <!-- Article Image -->
     @if ($post->getImage() !== '/storage/')
     <a href="{{ route('view', $post) }}" class="hover:opacity-75">
-        <img src="{{ $post->getImage() }}" alt="{{ $post->title }}" class="aspect-[4/3] object-contain">
+        <img src="{{ $post->getImage() }}" alt="{{ $post->title }}" class="aspect-auto object-contain">
     </a>
     @endif
     <div class="bg-white flex flex-col justify-start p-6">
@@ -16,10 +16,12 @@
         <a href="{{ route('view', $post) }}" class="text-3xl font-bold hover:text-gray-700 pb-4">
             {{ $post->title }}
         </a>
+        @if ($showAuthor)
         <p href="#" class="text-sm pb-3">
             By <a href="#" class="font-semibold hover:text-gray-800">
-                {{ $post->user->name }}</a>, Published on {{ $post->getFormattedDate() }}
+                {{ $post->user->name }}</a>, Published on {{ $post->getFormattedDate() }} | {{ $post->human_read_time }}
         </p>
+        @endif
         <a href="{{ route('view', $post) }}" class="pb-6">
             {{ $post->shortContent() }}
         </a>

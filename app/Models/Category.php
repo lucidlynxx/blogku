@@ -28,6 +28,7 @@ class Category extends Model
     {
         return $this->belongsToMany(Post::class)
             ->where('status', '=', 'published')
-            ->whereDate('posts.updated_at', '<=', Carbon::now());
+            ->whereDate('posts.updated_at', '<=', Carbon::now())
+            ->orderBy('updated_at', 'desc');
     }
 }
