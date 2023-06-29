@@ -1,4 +1,4 @@
-<x-filament-breezy::auth-card action="authenticate">
+<x-filament-breezy::auth-card-1 action="authenticate">
 
     {{-- <div class="w-full flex justify-center">
         <x-filament::brand />
@@ -29,4 +29,5 @@
             href="{{route(config('filament-breezy.route_group_prefix').'password.request')}}">{{
             __('filament-breezy::default.login.forgot_password_link') }}</a>
     </div>
-</x-filament-breezy::auth-card>
+
+</x-filament-breezy::auth-card-1>
