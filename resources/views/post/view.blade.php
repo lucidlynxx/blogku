@@ -1,5 +1,5 @@
-<x-app-layout :meta-title="'Blogku - ' .$post->meta_title ?: $post->title" :meta-description="$post->meta_description">
-    <div class="flex">
+<x-app-layout :meta-title="'Blogku ' .$post->meta_title ?: $post->title" :meta-description="$post->meta_description">
+    <div class="flex mx-20">
         <!-- Post Section -->
         <section class="w-full md:w-2/3 flex flex-col px-3">
 
@@ -59,6 +59,7 @@
                 </div>
             </div>
 
+            <livewire:comments :post="$post" />
         </section>
 
         <x-sidebar />
