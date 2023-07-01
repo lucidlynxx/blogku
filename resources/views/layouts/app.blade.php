@@ -119,7 +119,7 @@
         <div class="block sm:hidden">
             <a href="#" class="flex items-center justify-center text-base font-bold text-center uppercase md:hidden"
                 @click="open = !open">
-                Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="ml-2 fas"></i>
+                Categories <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="ml-2 fas"></i>
             </a>
         </div>
         <div :class="open ? 'block': 'hidden'" class="flex-grow w-full sm:flex sm:items-center sm:w-auto">
@@ -137,7 +137,7 @@
     <div class="container py-6 mx-auto">
 
         @if (!request()->routeIs('about-us'))
-        <div class="max-w-5xl p-3 mx-auto">
+        <div class="p-3 mx-auto lg:w-2/3 md:w-auto">
             <form method="GET" action="{{ route('search') }}">
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
