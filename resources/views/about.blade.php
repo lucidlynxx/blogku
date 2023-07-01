@@ -1,6 +1,6 @@
 <x-app-layout :meta-title="'Blogku - About us page'" :meta-description="'Project untuk portfolio'">
 
-    <div class="container mx-20 flex flex-wrap">
+    <div class="container mx-auto px-24 flex flex-wrap">
         <section class="w-full flex flex-col items-center px-3">
 
             <article class="flex flex-col shadow my-4">
