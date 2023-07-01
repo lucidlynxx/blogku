@@ -25,17 +25,17 @@
 
     <!-- Top Bar Nav -->
     <nav class="w-full py-5 bg-blue-800 shadow">
-        <div class="w-full container mx-auto flex flex-wrap items-center justify-between lg:px-28">
+        <div class="container flex flex-wrap items-center justify-between w-full mx-auto lg:px-28">
 
             <nav>
-                <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ route('home') }}">Home</a></li>
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ route('about-us') }}">About us</a>
+                <ul class="flex items-center justify-between text-sm font-bold text-white no-underline uppercase">
+                    <li><a class="px-4 hover:text-gray-200 hover:underline" href="{{ route('home') }}">Home</a></li>
+                    <li><a class="px-4 hover:text-gray-200 hover:underline" href="{{ route('about-us') }}">About us</a>
                     </li>
                 </ul>
             </nav>
 
-            <div class="flex items-center text-sm no-underline text-white">
+            <div class="flex items-center text-sm text-white no-underline">
                 @auth
                 <div x-data="{
                     open: false,
@@ -61,7 +61,7 @@
                     <!-- button -->
                     <button x-ref="button" x-on:click="toggle()" :aria-expanded="open"
                         :aria-controls="$id('dropdown-button')" type="button"
-                        class="hover:text-gray-200 hover:underline px-4 uppercase font-bold inline-flex">
+                        class="inline-flex px-4 font-bold uppercase hover:text-gray-200 hover:underline">
                         {{ Auth::user()->name }}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 ml-2 transition-all"
@@ -73,26 +73,26 @@
                     <!-- Panel -->
                     <div x-ref="panel" x-show="open" x-transition.origin.top.left
                         x-on:click.outside="close($refs.button)" :id="$id('dropdown-button')" style="display: none;"
-                        class="absolute right-3 mt-2 w-40 rounded-md bg-white shadow-md">
+                        class="absolute w-40 mt-2 bg-white rounded-md shadow-md right-3">
                         <a href="{{ route('filament.pages.my-profile') }}" target="_blank"
-                            class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
-                            <span class="text-black font-bold uppercase">Profile</span>
+                            class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left first-of-type:rounded-t-md last-of-type:rounded-b-md hover:bg-gray-50 disabled:text-gray-500">
+                            <span class="font-bold text-black uppercase">Profile</span>
                         </a>
                         <form method="POST" action="{{ route('filament.auth.logout') }}">
                             @csrf
                             <button type="submit"
-                                class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md px-4 py-2 text-left text-sm hover:bg-gray-50 disabled:text-gray-500">
-                                <span class="text-black font-bold uppercase">Log out</span>
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left first-of-type:rounded-t-md last-of-type:rounded-b-md hover:bg-gray-50 disabled:text-gray-500">
+                                <span class="font-bold text-black uppercase">Log out</span>
                             </button>
                         </form>
                     </div>
                 </div>
                 @else
-                <a class="hover:text-gray-200 hover:underline px-4 uppercase font-bold"
+                <a class="px-4 font-bold uppercase hover:text-gray-200 hover:underline"
                     href="{{ route('filament.auth.login') }}" target="_blank">
                     Login
                 </a>
-                <a class="hover:text-gray-200 hover:underline px-4 uppercase font-bold pl-6"
+                <a class="px-4 pl-6 font-bold uppercase hover:text-gray-200 hover:underline"
                     href="{{ route('register') }}" target="_blank">
                     Register
                 </a>
@@ -103,9 +103,9 @@
     </nav>
 
     <!-- Text Header -->
-    <header class="w-full container mx-auto">
+    <header class="container w-full mx-auto">
         <div class="flex flex-col items-center py-12">
-            <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="{{ route('home') }}">
+            <a class="text-5xl font-bold text-gray-800 uppercase hover:text-gray-700" href="{{ route('home') }}">
                 BlogKu
             </a>
             <p class="text-lg text-gray-600">
@@ -115,29 +115,29 @@
     </header>
 
     <!-- Topic Nav -->
-    <nav class="w-full py-4 border-t border-b bg-gray-100" x-data="{ open: false }">
+    <nav class="w-full py-4 bg-gray-100 border-t border-b" x-data="{ open: false }">
         <div class="block sm:hidden">
-            <a href="#" class="md:hidden text-base font-bold uppercase text-center flex justify-center items-center"
+            <a href="#" class="flex items-center justify-center text-base font-bold text-center uppercase md:hidden"
                 @click="open = !open">
-                Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="fas ml-2"></i>
+                Topics <i :class="open ? 'fa-chevron-down': 'fa-chevron-up'" class="ml-2 fas"></i>
             </a>
         </div>
-        <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
+        <div :class="open ? 'block': 'hidden'" class="flex-grow w-full sm:flex sm:items-center sm:w-auto">
             <div
-                class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
+                class="container flex flex-col items-center justify-center w-full px-6 py-2 mx-auto mt-0 text-sm font-bold uppercase sm:flex-row">
                 @foreach ($categories as $category)
                 <a href="{{ route('by-category', $category) }}"
-                    class="hover:bg-blue-800 hover:text-white rounded py-2 px-4 mx-2">{{ $category->name }}</a>
+                    class="px-4 py-2 mx-2 rounded hover:bg-blue-800 hover:text-white">{{ $category->name }}</a>
                 @endforeach
             </div>
         </div>
     </nav>
 
 
-    <div class="container mx-auto py-6">
+    <div class="container py-6 mx-auto">
 
         @if (!request()->routeIs('about-us'))
-        <div class="mx-auto max-w-5xl p-3">
+        <div class="max-w-5xl p-3 mx-auto">
             <form method="GET" action="{{ route('search') }}">
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -151,7 +151,7 @@
                     </div>
                     <input name="q" value="{{ request()->get('q') }}" type="search"
                         class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-800 focus:border-blue-800 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
-                        placeholder="Type an hit enter to search anything">
+                        placeholder="search anything..">
                     <button type="submit"
                         class="text-white absolute right-2.5 bottom-2.5 bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
@@ -163,8 +163,8 @@
 
     </div>
 
-    <footer class="w-full border-t bg-white">
-        <div class="w-full container mx-auto flex flex-col items-center">
+    <footer class="w-full bg-white border-t">
+        <div class="container flex flex-col items-center w-full mx-auto">
             <div class="py-6">&copy; {{ date('Y') }} Dzaky Syahrizal. All Rights Reserved.</div>
         </div>
     </footer>

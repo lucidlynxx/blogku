@@ -1,7 +1,7 @@
-<aside class="w-full md:w-1/3 flex flex-col items-center px-3">
+<aside class="flex flex-col items-center w-full px-3 md:w-1/3">
 
-    <div class="w-full bg-white shadow flex flex-col my-4 p-6">
-        <h3 class="text-xl font-semibold mb-3">
+    <div class="flex flex-col w-full p-6 my-4 bg-white shadow">
+        <h3 class="mb-3 text-xl font-semibold">
             All Categories
         </h3>
         @foreach ($categories as $category)
@@ -12,13 +12,13 @@
         @endforeach
     </div>
 
-    <div class="w-full bg-white shadow flex flex-col my-4 p-6">
-        <p class="text-xl font-semibold pb-5">
+    <div class="flex flex-col w-full p-6 my-4 bg-white shadow">
+        <p class="pb-5 text-xl font-semibold">
             {{ \App\Models\TextWidget::getTitle('about-us-sidebar') }}
         </p>
         {!! \App\Models\TextWidget::getContent('about-us-sidebar') !!}
         <a href="{{ route('about-us') }}"
-            class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">
+            class="flex items-center justify-center w-full px-2 py-3 mt-4 text-sm font-bold text-white uppercase bg-blue-800 rounded hover:bg-blue-700">
             Get to know us
         </a>
     </div>
