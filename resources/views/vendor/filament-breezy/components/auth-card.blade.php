@@ -3,9 +3,9 @@
     , 'dark:bg-gray-900 dark:text-white'=> config('filament.dark_mode'),
     ])>
 
-    <div class="px-6 -mt-16 md:mt-0 md:px-2 max-w-{{ config('filament-breezy.auth_card_max_w') }} space-y-8 w-screen">
+    <div class="px-6 mt-10 md:mt-0 md:px-2 max-w-{{ config('filament-breezy.auth_card_max_w') }} space-y-8 w-screen">
         <form wire:submit.prevent="{{ $action }}"
-            @class([ 'p-8 space-y-8 bg-white/50 backdrop-blur-xl border border-gray-200 shadow-2xl rounded-2xl relative filament-breezy-auth-card'
+            @class([ 'p-8 space-y-8 bg-white/50 border border-gray-200 shadow-2xl rounded-2xl relative filament-breezy-auth-card'
             , 'dark:bg-gray-900/50 dark:border-gray-700'=> config('filament.dark_mode'),
             ])>
             {{ $slot }}
