@@ -21,7 +21,11 @@ class CommentPolicy
      */
     public function view(User $user, Comment $comment): bool
     {
-        return $user->hasRole('admin');
+        if ($user->hasRole('admin') || $user->hasRole('writer')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
