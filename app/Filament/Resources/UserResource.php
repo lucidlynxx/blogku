@@ -77,18 +77,17 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('email')
-                    ->sortable()
-                    ->searchable(),
+                    ->label('Name and Email')
+                    ->sortable(['name', 'email'])
+                    ->searchable(['name', 'email'])
+                    ->description(fn (User $record): string => $record->email),
                 Tables\Columns\TextColumn::make('username')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->date()
+                    ->date('d M Y - H:i')
                     ->sortable()
-            ])
+            ])->defaultSort('updated_at', 'desc')
             ->filters([
                 //
             ])

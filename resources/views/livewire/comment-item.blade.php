@@ -1,5 +1,5 @@
-<div class="flex justify-between mb-4 gap-3">
-    <div class="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full">
+<div class="flex justify-between gap-3 mb-4">
+    <div class="flex items-center justify-center w-12 h-12 bg-gray-200 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -21,9 +21,9 @@
         </div>
         @endif
         <div>
-            <a wire:click.prevent='startReply' href="#" class="text-sm text-blue-800 mr-3">Reply</a>
+            <a wire:click.prevent='startReply' href="#" class="mr-3 text-sm text-blue-800">Reply</a>
             @if (Auth::id() == $comment->user_id)
-            <a wire:click.prevent="startCommentEdit" href="#" class="text-sm text-indigo-600 mr-3">Edit</a>
+            <a wire:click.prevent="startCommentEdit" href="#" class="mr-3 text-sm text-indigo-600">Edit</a>
             <a wire:click.prevent='deleteComment' href="#" class="text-sm text-red-600">Delete</a>
             @endif
         </div>
@@ -34,7 +34,9 @@
         @if ($comment->comments->count())
         <div class="mt-4">
             @foreach($comment->comments as $childComment)
+            @if ($childComment->visibility === 1)
             <livewire:comment-item :comment="$childComment" wire:key="comment-{{$childComment->id}}" />
+            @endif
             @endforeach
         </div>
         @endif

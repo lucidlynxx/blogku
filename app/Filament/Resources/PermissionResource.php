@@ -21,7 +21,7 @@ class PermissionResource extends Resource
 
     protected static ?string $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
@@ -41,7 +41,7 @@ class PermissionResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->date()
+                    ->date('d M Y - H:i')
                     ->sortable(),
             ])
             ->filters([

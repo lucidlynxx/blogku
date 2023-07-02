@@ -22,7 +22,7 @@ class RoleResource extends Resource
 
     protected static ?string $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -43,8 +43,9 @@ class RoleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TagsColumn::make('permissions.name'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->date()
+                    ->date('d M Y - H:i')
                     ->sortable()
             ])
             ->filters([

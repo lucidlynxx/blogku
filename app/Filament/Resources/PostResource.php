@@ -103,10 +103,12 @@ class PostResource extends Resource
                     ->square()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('user.username')
+                    ->label('Name')
                     ->sortable()
                     ->searchable()
                     ->visible(Gate::allows('admin')),
                 Tables\Columns\TextColumn::make('title')
+                    ->wrap()
                     ->sortable()
                     ->searchable(['title', 'content']),
                 BadgeColumn::make('status')
@@ -122,12 +124,16 @@ class PostResource extends Resource
                     ])
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->date()
+                Tables\Columns\TagsColumn::make('categories.name')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->date('d M Y - H:i')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->date()
+                    ->date('d M Y - H:i')
                     ->sortable()
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),

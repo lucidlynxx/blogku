@@ -23,7 +23,7 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
@@ -50,8 +50,15 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->date('d M Y - H:i')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                    ->sortable()
+                    ->searchable()
+                    ->date('d M Y - H:i')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

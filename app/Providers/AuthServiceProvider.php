@@ -4,11 +4,13 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 
+use App\Models\Comment;
 use App\Models\Permission;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\TextWidget;
 use App\Models\User;
+use App\Policies\CommentPolicy;
 use App\Policies\PermissionPolicy;
 use App\Policies\PostPolicy;
 use App\Policies\RolePolicy;
@@ -26,6 +28,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Post::class => PostPolicy::class,
+        Comment::class => CommentPolicy::class,
         User::class => UserPolicy::class,
         TextWidget::class => TextWidgetPolicy::class,
         Role::class => RolePolicy::class,

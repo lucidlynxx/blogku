@@ -22,15 +22,14 @@ class TextWidgetResource extends Resource
 
     protected static ?string $navigationGroup = 'Content';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('key')
-                    ->required()
-                    ->maxLength(255),
+                    ->disabled(),
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->minSize(256)
@@ -58,7 +57,7 @@ class TextWidgetResource extends Resource
                 Tables\Columns\IconColumn::make('active')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                    ->date('d M Y - H:i'),
             ])
             ->filters([
                 //
@@ -82,7 +81,6 @@ class TextWidgetResource extends Resource
     {
         return [
             'index' => Pages\ListTextWidgets::route('/'),
-            'create' => Pages\CreateTextWidget::route('/create'),
             'edit' => Pages\EditTextWidget::route('/{record}/edit'),
         ];
     }
